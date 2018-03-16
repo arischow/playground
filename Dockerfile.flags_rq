@@ -1,0 +1,4 @@
+FROM kennethreitz/pipenv:latest
+WORKDIR /usr/src/app
+#CMD python flags_rq.py
+

@@ -1,0 +1,28 @@
+version: "3"
+
+services:
+  redis:
+    image: redis:alpine
+    expose:
+      - 6379
+
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile.flags_rq
+    volumes:
+      - .:/usr/src/app
+    depends_on:
+      - worker
+    command:
+      - python flags_rq.py
+
+  worker:
+    build: .
+    volumes:
+      - .:/usr/src/app
+    depends_on:
+      - redis
+    command:
+      - rq worker -u redis://redis:6379/0
+
