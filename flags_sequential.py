@@ -12,7 +12,7 @@ flag_images = ('http:' + img.attrs['src'] for img in images)
 FOLDER = 'images'
 
 
-def download_flag(url):
+def download_one(url):
     resp = requests.get(url)
     name = url.split('/')[-1]
     save_img(resp.content, name)
@@ -32,7 +32,7 @@ def save_img(content, name):
 
 def download_many(url_list):
     for url in url_list:
-        download_flag(url)
+        download_one(url)
 
 
 def main():

@@ -1,12 +1,12 @@
 import time
 from concurrent import futures
 
-from image_sequential import download_flag, flag_images
+from flags_sequential import download_one, flag_images
 
 
 def download_many(url_list):
     with futures.ThreadPoolExecutor(21) as executor:
-        executor.map(download_flag, sorted(url_list))
+        executor.map(download_one, sorted(url_list))
 
 
 def main():
